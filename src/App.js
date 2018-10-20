@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+const cardValues = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
 class App extends Component {
-  render() {
-    return (
+
+  state = {
+    deck: [],
+    currentPlayer: 0,
+
+  };
+
+  createDeck = () => {
+    let newDeck = [];
+    for (let i=0; i<4; i++) {
+        let tmp = [];
+        tmp = cardValues.slice();
+        while(tmp.length!==0) {
+            let randomIndex = Math.floor(Math.random() * tmp.length);
+            let tempCard = tmp.splice(randomIndex, 1)[0];
+            newDeck.push(tempCard);
+        }
+    }
+    this.setState({deck: newDeck})
+  };
+
+  componentDidMount() {
+    this.createDeck();
+  }
+
+    render() {
+      return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="container">
+
+        </div>
       </div>
     );
   }
